@@ -20,7 +20,7 @@ function addNewNote(text = '') {
     </div>
 
     <div class="main ${text ? "" : "hidden"}"></div>
-    <textarea class="${text ? "hidden" : ""}"></textarea>
+    <textarea class="${text ? "hidden" : ""}" style="resize: none;" placeholder="Enter Note"></textarea>
     `
 
     const editBtn = note.querySelector('.edit')
