@@ -12,7 +12,7 @@ body {
   flex-wrap: wrap;
   margin: 0;
   padding-top: 3rem;
-  width: 90vw;
+  width: 95vw;
   margin: auto;
 }
 
@@ -20,24 +20,42 @@ body {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  background-color: #9ec862;
+  background-color:rgb(94, 92, 92);
   color: #fff;
-  border: none;
-  border-radius: 3px;
+  border: 3px solid transparent;
+  border-radius: 5px;
   padding: 0.5rem 1rem;
+  font-weight: 700;
   cursor: pointer;
+  transition: 500ms ;
+}
+
+.add:hover{
+  border:3px solid rgb(94, 92, 92);
+  background-color: transparent;
+  color: black;
+}
+.delt:hover{
+  
+    border:3px solid rgb(94, 92, 92);
+    background-color: transparent;
+    color: black;
+  
 }
 
 .delt{
   position: fixed;
   top: 1rem;
   left: 1rem;
-  background-color: #9ec862;
+  background-color: rgb(94, 92, 92);
   color: #fff;
   border: none;
   border-radius: 3px;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  transition: 500ms; 
+  font-weight: 700;
+  border: 3px solid transparent;
 }
 
 .add:active {
@@ -47,15 +65,18 @@ body {
 .note {
   background-color: #fff;
   box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
-  margin: 30px 20px;
-  height: 400px;
-  width: 400px;
+  margin: 20px 40px;
+  margin-inline:auto;
+  height: 380px;
+  border-radius: 7px;
+  width:380px;
   overflow-y: scroll;
 }
 
 .note .tools {
-  background-color: #9ec862;
+  background-color: rgb(94, 92, 92);
   display: flex;
+  
   justify-content: flex-end;
   padding: 0.5rem;
 }
@@ -85,4 +106,14 @@ body {
 
 .hidden {
   display: none;
+}
+
+@media(max-width:930px){
+  .note {
+    margin: 35px 35px;
+    margin-inline: auto;
+    height: 350px;
+    width: 70%;
+    overflow-y: scroll;
+  }
 }
