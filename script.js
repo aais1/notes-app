@@ -1,7 +1,7 @@
 const addBtn = document.getElementById('add')
 const deletAll=document.querySelector('.delt');
 const notes = JSON.parse(localStorage.getItem('notes'))
-
+let counter=0;
 if(notes) {
     notes.forEach(note => addNewNote(note))
 }
@@ -10,8 +10,11 @@ addBtn.addEventListener('click', () => addNewNote())
 deletAll.addEventListener('click',deleteAllNotes)
 
 function addNewNote(text = '') {
+    counter++;
+    checkNotes()
+    
     const note = document.createElement('div')
-    note.classList.add('note')
+    note.classList.add('note','scaleUp')
 
     note.innerHTML = `
     <div class="tools">
@@ -22,16 +25,20 @@ function addNewNote(text = '') {
     <div class="main ${text ? "" : "hidden"}"></div>
     <textarea class="${text ? "hidden" : ""}" style="resize: none;" placeholder="Enter Note"></textarea>
     `
-
+   
     const editBtn = note.querySelector('.edit')
     const deleteBtn = note.querySelector('.delete')
     const main = note.querySelector('.main')
     const textArea = note.querySelector('textarea')
 
-    textArea.value = text
-    main.innerHTML = marked(text)
+    textArea.value = text;
+    
+    main.innerHTML = marked(text);
+    textArea.focus();
 
     deleteBtn.addEventListener('click', () => {
+        counter--;
+        checkNotes()
         note.remove()
         updateLS()
     })
@@ -53,16 +60,18 @@ function addNewNote(text = '') {
 }
 
 function deleteAllNotes(){
+    counter=0;
+    checkNotes()
     const noteElements = document.querySelectorAll('.note');
 
     noteElements.forEach(note => {
         note.remove();
     });
 
-    // Clear the notes array
+    
     notes.length = 0;
 
-    // Update local storage
+
     updateLS();
 }
 
@@ -74,4 +83,8 @@ function updateLS() {
     notesText.forEach(note => notes.push(note.value))
 
     localStorage.setItem('notes', JSON.stringify(notes))
+}
+
+function checkNotes(){
+    counter>=2?deletAll.classList.remove('hidden'):deletAll.classList.add('hidden');
 }
