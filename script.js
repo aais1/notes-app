@@ -2,6 +2,7 @@ const addBtn = document.getElementById('add')
 const deletAll=document.querySelector('.delt');
 const notes = JSON.parse(localStorage.getItem('notes'))
 let counter=0;
+checkNotes();
 if(notes) {
     notes.forEach(note => addNewNote(note))
 }
@@ -39,7 +40,10 @@ function addNewNote(text = '') {
     deleteBtn.addEventListener('click', () => {
         counter--;
         checkNotes()
-        note.remove()
+        note.classList.add('scaleDown')
+        note.onanimationend= ()=>{
+            note.remove()
+        }
         updateLS()
     })
 
@@ -65,7 +69,10 @@ function deleteAllNotes(){
     const noteElements = document.querySelectorAll('.note');
 
     noteElements.forEach(note => {
-        note.remove();
+        note.classList.add('scaleDown');
+        note.onanimationend=()=>{
+            note.remove();
+        }
     });
 
     
